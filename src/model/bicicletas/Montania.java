@@ -2,19 +2,19 @@ package model.bicicletas;
 
 import model.Vendible;
 
-public class Ruta extends Bicicleta implements Vendible {
+public class Montania extends Bicicleta implements Vendible {
     private Bicicleta bicicleta;
 
-    public Ruta() {
+    public Montania() {
     }
 
-    public Ruta(String nroSerie, String modelo, int anio, float precio) {
+    public Montania(String nroSerie, String modelo, int anio, float precio) {
         super(nroSerie, modelo, anio, precio);
     }
 
     @Override
     public String getTipo() {
-        return "Ruta";
+        return "Montaña";
     }
 
     @Override

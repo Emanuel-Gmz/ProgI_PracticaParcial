@@ -1,10 +1,12 @@
-package model;
+package model.bicicletas;
 
-public abstract class Bicicleta {
-    private String nroSerie;
-    private String modelo;
-    private int anio;
-    private float precio;
+import model.Vendible;
+
+public abstract class Bicicleta implements Vendible {
+    public String nroSerie;
+    public String modelo;
+    public int anio;
+    public float precio;
 
     public Bicicleta() {}
 
@@ -29,5 +31,7 @@ public abstract class Bicicleta {
     public void setNroSerie(String nroSerie) {this.nroSerie = nroSerie;}
     public void setPrecio(float precio) {this.precio = precio;}
 
-    public void tipoBicicleta(){}
+    public abstract String getTipo();
+
+    public abstract float calcularPrecioFinal();
 }

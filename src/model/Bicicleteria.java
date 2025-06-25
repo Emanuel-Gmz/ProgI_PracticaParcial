@@ -1,33 +1,70 @@
 package model;
 
 
+import model.bicicletas.Bicicleta;
+import model.exception.BicicletaNoDisponible;
+
+import java.util.ArrayList;
 
 public class Bicicleteria{
-    private String[] inventario = new String[1000];
+    private ArrayList<Bicicleta> bicicletas;
     private float ganancias;
     private int cantidadDeVentas;
-    private Bicicleta bicicleta;
 
     public Bicicleteria() {
+        bicicletas = new ArrayList<>();
+        ganancias = 0;
+        cantidadDeVentas = 0;
     }
 
-    public Bicicleteria(float ganancias, Bicicleta bicicleta, int cantidadDeVentas) {
-        this.ganancias = ganancias;
-        agregarBicicleta();
-        this.cantidadDeVentas = cantidadDeVentas;
-        this.bicicleta = bicicleta;
-    }
-
-
-
-    private void agregarBicicleta(){
-        for (int i=0; i< inventario.length;i++){
-            inventario[i] = String.valueOf(bicicleta);
+    public void agregarBicicleta(Bicicleta bici) {
+        if (bicicletas.size() < 1000) {
+            bicicletas.add(bici);
+        } else {
+            System.out.println("No se pueden agregar más bicicletas al inventario.");
         }
     }
-    private void venderBicicleta() {}
-    private void mostrarBicicletasDisponibles(){
-        System.out.println("Bicicleta" + "\n Numero serie " + bicicleta.getNroSerie()
-        + "\n Modelo: " + bicicleta.getModelo() + "\n Año: " + bicicleta.getAnio() + "\n Precio:" + bicicleta.getPrecio());
+
+    public void venderBicicleta(String nroSerie) throws BicicletaNoDisponible {
+        Bicicleta biciVender = null;
+        for (Bicicleta bici : bicicletas) {
+            if (bici.getNroSerie().equalsIgnoreCase(nroSerie)) {
+                biciVender = bici;
+                break;
+            }
+        }
+
+        if (biciVender == null) {
+            throw new BicicletaNoDisponible("La bicicleta con nro de serie " + nroSerie + " no está disponible.");
+        }
+
+        float precioFinal = biciVender.calcularPrecioFinal();
+        ganancias += precioFinal;
+        cantidadDeVentas++;
+        System.out.println("Bicicleta vendida. Precio: " + precioFinal);
     }
+
+    public void mostrarBicicletasDisponibles() {
+        if (bicicletas.isEmpty()) {
+            System.out.println("No hay bicicletas en stock.");
+        } else {
+            System.out.println("Bicicletas en stock:");
+            for (Bicicleta bicicleta : bicicletas) {
+                System.out.println("Tipo:" + bicicleta.getTipo() +
+                    " Serie:" + bicicleta.getNroSerie() +
+                    " Modelo:" + bicicleta.getModelo() +
+                    " Año:" + bicicleta.getAnio() +
+                    " Precio:" + bicicleta.getPrecio());
+            }
+        }
+    }
+
+    public float getGanancias() {
+        return ganancias;
+    }
+
+    public int getCantidadDeVentas() {
+        return cantidadDeVentas;
+    }
+
 }

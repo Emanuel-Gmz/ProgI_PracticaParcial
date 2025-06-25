@@ -1,6 +1,5 @@
 package model.bicicletas;
 
-import model.Bicicleta;
 import model.Vendible;
 
 public class Urbana extends Bicicleta implements Vendible {
@@ -14,18 +13,12 @@ public class Urbana extends Bicicleta implements Vendible {
     }
 
     @Override
-    public void tipoBicicleta(){this.getModelo();}
+    public String getTipo() {
+        return "Urbana";
+    }
 
     @Override
     public float calcularPrecioFinal() {
-        switch (bicicleta.getAnio()){
-            case 2:
-                return 80000;
-            case 1:
-                return 16000;
-            case 23:
-                return 25000;
-        }
-        return 0;
+        return precio;
     }
 }
