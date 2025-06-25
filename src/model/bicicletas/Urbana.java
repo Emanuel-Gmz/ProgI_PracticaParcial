@@ -19,6 +19,10 @@ public class Urbana extends Bicicleta implements Vendible {
 
     @Override
     public float calcularPrecioFinal() {
-        return precio;
+        if (anio < 2025){
+            return (float) (precio*0.90);
+        }else
+
+            return (float) (precio*1.21);
     }
 }

@@ -11,11 +11,12 @@ public class Bicicleteria{
     private float ganancias;
     private int cantidadDeVentas;
 
-    public Bicicleteria() {
+    public Bicicleteria(){
         bicicletas = new ArrayList<>();
         ganancias = 0;
         cantidadDeVentas = 0;
     }
+
 
     public void agregarBicicleta(Bicicleta bici) {
         if (bicicletas.size() < 1000) {
@@ -30,6 +31,11 @@ public class Bicicleteria{
         for (Bicicleta bici : bicicletas) {
             if (bici.getNroSerie().equalsIgnoreCase(nroSerie)) {
                 biciVender = bici;
+                float precioFinal = biciVender.calcularPrecioFinal();
+                ganancias += precioFinal;
+                cantidadDeVentas++;
+                bicicletas.remove(bici);
+                System.out.println("Bicicleta vendida. Precio: " + precioFinal);
                 break;
             }
         }
@@ -38,10 +44,7 @@ public class Bicicleteria{
             throw new BicicletaNoDisponible("La bicicleta con nro de serie " + nroSerie + " no está disponible.");
         }
 
-        float precioFinal = biciVender.calcularPrecioFinal();
-        ganancias += precioFinal;
-        cantidadDeVentas++;
-        System.out.println("Bicicleta vendida. Precio: " + precioFinal);
+
     }
 
     public void mostrarBicicletasDisponibles() {
