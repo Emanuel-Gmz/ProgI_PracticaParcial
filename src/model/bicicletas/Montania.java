@@ -31,8 +31,6 @@ public class Montania extends Bicicleta implements Vendible {
     public float calcularPrecioFinal() {
         if (anio < 2025){
             return (float) (precio*0.90);
-        }else
-
-        return (float) (precio*1.21);
+        }else return (float) (precio*1.21);
     }
 }

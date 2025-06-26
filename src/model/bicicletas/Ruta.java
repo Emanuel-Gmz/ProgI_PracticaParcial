@@ -13,6 +13,16 @@ public class Ruta extends Bicicleta implements Vendible {
     }
 
     @Override
+    public float getPrecio() {
+        return super.getPrecio();
+    }
+
+    @Override
+    public void setPrecio(float precio) {
+        super.setPrecio(precio);
+    }
+
+    @Override
     public String getTipo() {
         return "Ruta";
     }
